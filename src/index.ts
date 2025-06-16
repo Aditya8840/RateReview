@@ -8,9 +8,12 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 app.use(Middleware.errorHandler);
+
 app.use("/api/auth", Routers.AuthRouter);
+app.use("/api/user", Routers.UserRouter);
+
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
