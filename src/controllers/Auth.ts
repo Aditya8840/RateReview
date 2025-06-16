@@ -1,16 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import { UserDao } from "../daos/User";
+import * as Dao from "../daos/index.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
-const userDao = new UserDao();
 
 export const AuthController = {
     register: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { name, email, password } = req.body;
             const hashedPassword = await bcrypt.hash(password, 10);
-            const user = await userDao.create({ name, email, password: hashedPassword });   
+            const user = await Dao.UserDao.create({ name, email, password: hashedPassword });   
             res.status(201).json({ message: "User created successfully" });
         } catch (error) {
             next(error);
@@ -20,7 +18,7 @@ export const AuthController = {
     login: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { email, password } = req.body;
-            const user = await userDao.getByEmail(email);
+            const user = await Dao.UserDao.getByEmail(email);
             if (!user) {
                 res.status(401).json({ message: "Invalid credentials" });
                 return;

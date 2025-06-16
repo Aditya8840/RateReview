@@ -1,5 +1,5 @@
-import prisma from "../config/database";
-import * as models from "../models";
+import prisma from "../config/database.js";
+import * as models from "../models/index.js";
 
 export const UserDao = {
     create: async (userData: models.CreateUserRequest) => {

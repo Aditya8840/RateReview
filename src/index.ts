@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import authRouter from "./routers/Auth";
-import { errorHandler } from "./middleware/ErrorHandler";
+import * as Routers from "./routers/index.js";
+import * as Middleware from "./middleware/index.js";
 
 dotenv.config();
 
@@ -9,8 +9,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use(errorHandler);
-app.use("/api/auth", authRouter);
+app.use(Middleware.errorHandler);
+app.use("/api/auth", Routers.AuthRouter);
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
