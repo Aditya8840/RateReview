@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RateReview - Product Rating System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loginSection" class="container">
+        <div class="login-card">
+            <h1>RateReview</h1>
+            <p>Sign in to rate products</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
+
+    <div id="productsSection" class="container" style="display: none;">
+        <header class="header">
+            <h1>Products</h1>
+            <button id="logoutBtn" class="btn-secondary">Logout</button>
+        </header>
+        
+        <div id="productsGrid" class="products-grid">
+        </div>
+    </div>
+
+    <div id="ratingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rate Product</h2>
+            <div id="productInfo" class="product-info">
+            </div>
+            <form id="ratingForm">
+                <div class="rating-section">
+                    <label>Rating *</label>
+                    <div class="stars">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment (Optional)</label>
+                    <textarea id="comment" name="comment" rows="4" placeholder="Share your thoughts about this product..."></textarea>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" id="cancelRating" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Rating</button>
+                </div>
+            </form>
+            <div id="ratingError" class="error-message"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
