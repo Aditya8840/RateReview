@@ -46,10 +46,18 @@ Before you begin, make sure you have installed:
    npx prisma migrate dev
    ```
 
-5. **Seed the Database (Optional)**
+5. **Seed the Database with Test Data**
    ```bash
-   npx prisma db seed
+   npm run seed
    ```
+   
+   This creates:
+   - **3 Test Users** (all with password: `password123`)
+     - alice@example.com
+     - bob@example.com  
+     - charlie@example.com
+   - **6 Products** with real images and descriptions
+   - **5 Sample Reviews** to demonstrate the rating system
 
 ### Running the Application
 
@@ -60,33 +68,27 @@ Before you begin, make sure you have installed:
 
 2. **Open Your Browser**
    - Navigate to `http://localhost:3000`
-   - You should see the login page
+   - Login with any test user (e.g., `alice@example.com` / `password123`)
 
 ### Testing the Application
 
 #### Manual Testing Steps
 
-1. **User Registration/Login**
-   - If you don't have test users, create them in your database or use a tool like Prisma Studio:
-     ```bash
-     npx prisma studio
-     ```
-
-2. **Test Product Display**
+1. **Test Product Display**
    - Login to see all products
    - Notice products appear in consistent order (by creation date)
 
-3. **Test Rating System**
+2. **Test Rating System**
    - Click "Rate Product" on any product
    - Give it a 1-5 star rating
    - Add an optional comment
    - Submit the rating
 
-4. **Test Already-Rated Logic**
+3. **Test Already-Rated Logic**
    - After rating a product, refresh the page
    - The "Rate Product" button should be replaced with "✓ You have already rated this product"
 
-5. **Test Order Consistency**
+4. **Test Order Consistency**
    - Refresh the page multiple times
    - Products should always appear in the same order
 

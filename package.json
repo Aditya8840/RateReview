@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc && node dist/index.js",
-    "dev": "tsc && node dist/index.js"
+    "dev": "tsc && node dist/index.js",
+    "seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +22,7 @@
     "express": "^5.1.0",
     "prisma": "^6.9.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
   "dependencies": {
