@@ -6,6 +6,19 @@ export const ReviewDao = {
         const review = await prisma.review.create({
             data: reviewData,
         });
+        const product = await prisma.product.findUnique({
+            where: { id: reviewData.productId },
+        });
+        if (!product) {
+            throw new Error("Product not found");
+        }
+        await prisma.product.update({
+            where: { id: reviewData.productId },
+            data: {
+                averageRating: (product.averageRating + review.rating) / (product.numReviews + 1),
+                numReviews: product.numReviews + 1,
+            },
+        });
         return review;
     },
 
