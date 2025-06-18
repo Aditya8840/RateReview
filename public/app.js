@@ -96,7 +96,17 @@ async function loadProducts() {
     try {
         showLoading(productsGrid, 'Loading products...');
         
-        const response = await fetch(`${API_BASE}/products`);
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (authToken) {
+            headers['Authorization'] = `Bearer ${authToken}`;
+        }
+        
+        const response = await fetch(`${API_BASE}/products`, {
+            headers: headers
+        });
         const products = await response.json();
         
         if (response.ok) {
@@ -128,9 +138,10 @@ function displayProducts(products) {
                 <div class="rating-stars">${generateStars(product.averageRating)}</div>
                 <div class="rating-text">(${product.numReviews} reviews)</div>
             </div>
-            <button class="rate-btn" onclick="openRatingModal('${product.id}')">
-                Rate Product
-            </button>
+            ${product.hasUserReview ? 
+                '<div class="already-rated">✓ You have already rated this product</div>' : 
+                '<button class="rate-btn" onclick="openRatingModal(\'' + product.id + '\')">Rate Product</button>'
+            }
         </div>
     `).join('');
 }

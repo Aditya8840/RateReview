@@ -4,7 +4,7 @@ import * as Middleware from "../middleware/index.js";
 
 const router = Router();
 
-router.get("/", Controller.ProductController.getProducts);
+router.get("/", Middleware.authMiddleware, Controller.ProductController.getProducts);
 
 router.get("/:id", Controller.ProductController.getProduct);
 

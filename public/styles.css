@@ -217,6 +217,18 @@ body {
     transform: translateY(-2px);
 }
 
+.already-rated {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    opacity: 0.8;
+}
+
 .modal {
     position: fixed;
     z-index: 1000;
